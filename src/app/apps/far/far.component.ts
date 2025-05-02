@@ -7,7 +7,7 @@ import { IconModule } from 'src/app/shared/icon/icon.module';
 @Component({
   selector: 'app-far',
   standalone: true,
-  imports: [IconModule , NgIf, RouterLink],
+  imports: [IconModule , RouterLink],
   templateUrl: './far.component.html',
   styleUrl: './far.component.css',
   animations: [slideDownUp],
