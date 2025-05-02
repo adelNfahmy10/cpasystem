@@ -8,7 +8,7 @@ export const logedGuard: CanActivateFn = (route, state) => {
 
     if(isPlatformBrowser(_PLATFORM_ID)){
       if(localStorage.getItem('token') !== null){
-        _Router.navigate(['/apps/far'])
+        _Router.navigate(['/apps/packages'])
         return false
       } else {
         return true

@@ -33,15 +33,18 @@ export class BoxedSigninComponent {
 
     submitLogin():void{
         let data = this.loginForm.value
-        this._AuthService.login(data).subscribe({
-            next:(res)=>{
-                localStorage.setItem('token', res.data.accessToken)
-                localStorage.setItem('refreshToken', res.data.refreshToken)
-                localStorage.setItem('fullName', res.data.fullName)
-                localStorage.setItem('role', res.data.roles)
-                this.router.navigate(['/apps/far'])
-            }
-        })
+        this.router.navigate(['/apps/packages'])
+        localStorage.setItem('token', 'TestToken')
+
+        // this._AuthService.login(data).subscribe({
+        //     next:(res)=>{
+        //         localStorage.setItem('token', res.data.accessToken)
+        //         localStorage.setItem('refreshToken', res.data.refreshToken)
+        //         localStorage.setItem('fullName', res.data.fullName)
+        //         localStorage.setItem('role', res.data.roles)
+        //         this.router.navigate(['/apps/packages'])
+        //     }
+        // })
     }
 
     async initStore() {

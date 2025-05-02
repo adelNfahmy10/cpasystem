@@ -25,6 +25,7 @@ import { TcpComponent } from './tcp/tcp.component';
 import { Far1Component } from './far/far1/far1.component';
 import { McqComponent } from './mcq/mcq.component';
 import { TbsComponent } from './tbs/tbs.component';
+import { PackagesComponent } from './packages/packages.component';
 
 const routes: Routes = [
     { path: 'apps/chat', component: ChatComponent, data: { title: 'Chat' } },
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: 'apps/invoice/add', component: InvoiceAddComponent, data: { title: 'Invoice Add' } },
     { path: 'apps/invoice/edit', component: InvoiceEditComponent, data: { title: 'Invoice Edit' } },
     { path: 'apps/calendar', component: CalendarComponent, data: { title: 'Calendar' } },
+    { path: 'apps/packages', component: PackagesComponent, data: { title: 'Packages' }},
     { path: 'apps/far', component: FarComponent, data: { title: 'FAR' }},
     { path:'f1', component:Far1Component, data:{title: 'F1'}},
     { path: 'apps/aud', component: AudComponent, data: { title: 'AUD' } },
