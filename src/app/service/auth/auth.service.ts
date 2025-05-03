@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
     private readonly _HttpClient = inject(HttpClient)
 
-
     register(data:any):Observable<any>{
         return this._HttpClient.post(`${environment.baseUrl}UserManager/v1/Register/register`, data)
     }

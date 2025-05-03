@@ -1,4 +1,4 @@
 export const environment = {
-    baseUrl: 'http://cources.runasp.net/api/',
+    baseUrl: 'https://cources.runasp.net/api/',
     production: true,
 };

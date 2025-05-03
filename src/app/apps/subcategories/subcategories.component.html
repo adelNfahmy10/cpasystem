@@ -1,0 +1,248 @@
+<section class="relative">
+    <div class="head bg-white dark:bg-[#1b2e4b] p-5 rounded-xl ">
+        <div class="flex items-center justify-start gap-3">
+            <div class="w-[30px] h-[30px] flex justify-center items-center text-[#fff] bg-[#004986] rounded-tl-[10px] rounded-br-[10px]">
+                <i class="fa-solid fa-minus font-bold text-[16px]"></i>
+            </div>
+            <h2 class="font-semibold"><span class="text-[30px] font-bold text-[#004986] dark:text-white">F1</span> Financial Reporting V1.2</h2>
+        </div>
+    </div>
+    <div class="subjects">
+        <div class="space-y-8 pt-5">
+            <div class="grid grid-cols-1">
+                <div class="panel">
+                    <div class="mb-5">
+                        <div class="space-y-2 font-semibold">
+                            <div class="rounded border dark:border-[#1b2e4b]">
+                                <div class="flex justify-center items-center ps-3 dark:bg-[#1b2e4b]">
+                                    <div class="w-[25px] h-[25px] flex justify-center items-center text-[#AD7226] bg-[#FBE6A7] rounded-tl-[10px] rounded-br-[10px]">
+                                        <i class="fa-solid fa-minus font-bold text-[16px]"></i>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="flex flex-wrap w-full items-center p-4 px-2 text-white-dark "
+                                        [ngClass]="{ '!text-[#FBE6A7]': accordians1 === 1 }"
+                                        (click)="accordians1 === 1 ? (accordians1 = null) : (accordians1 = 1)">
+                                        <p>
+                                            <span class="text-[25px] font-bold text-[#004986] dark:text-white">M1</span>
+                                            Balance Sheet, Income Statement, and Comprehensive Income
+                                        </p>
+                                        <div class="ltr:ml-auto rtl:mr-auto flex justify-between items-center gap-5">
+                                            <p>9 Videos - 40 MCQs - 4 TBSs</p>
+                                            <div [ngClass]="{ 'rotate-180': accordians1 === 1 }">
+                                                <icon-caret-down />
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div [@slideDownUp]="accordians1 !== 1" class="accordion-content">
+                                    <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-dark dark:text-white dark:border-[#1b2e4b]">
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold">MCQs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 1h 20m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column text-[20px] cursor-pointer" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="['/mcq']" routerLinkActive="router-link-active" ></i>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold mt-3">TBSs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 1h 20m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column cursor-pointer text-[20px]" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="['/tbs']"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                <div class="flex items-center justify-center ps-3 dark:bg-[#1b2e4b]">
+                                    <div class="w-[25px] h-[25px] flex justify-center items-center text-[#AD7226] bg-[#FBE6A7] rounded-tl-[10px] rounded-br-[10px]">
+                                        <i class="fa-solid fa-minus font-bold text-[16px]"></i>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="flex flex-wrap w-full items-center p-4 px-2 text-white-dark"
+                                        [ngClass]="{ '!text-[#FBE6A7]': accordians1 === 2 }"
+                                        (click)="accordians1 === 2 ? (accordians1 = null) : (accordians1 = 2)">
+                                        <p><span class="text-[25px] font-bold text-[#004986] dark:text-white">M2</span> EPS and Public Company Reporting Topics</p>
+                                        <div class="ltr:ml-auto rtl:mr-auto flex justify-between items-center gap-5">
+                                            <p>9 Videos - 40 MCQs - 4 TBSs</p>
+                                            <div [ngClass]="{ 'rotate-180': accordians1 === 2 }">
+                                                <icon-caret-down />
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div [@slideDownUp]="accordians1 !== 2" class="accordion-content">
+                                    <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-dark dark:text-white dark:border-[#1b2e4b]">
+                                        <div class="flex flex-wrap justify-between items-center">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold">MCQs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 40m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column cursor-pointer text-[20px]" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="'/mcq'"></i>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold mt-3">TBSs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 35m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column cursor-pointer text-[20px]" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="'/tbs'"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                <div class="flex justify-center items-center ps-3 dark:bg-[#1b2e4b]">
+                                    <div class="w-[25px] h-[25px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="flex flex-wrap w-full items-center p-4 px-2 text-white-dark dark:bg-[#1b2e4b]"
+                                        [ngClass]="{ '!text-[#FBE6A7]': accordians1 === 3 }"
+                                        (click)="accordians1 === 3 ? (accordians1 = null) : (accordians1 = 3)">
+                                        <p><span class="text-[25px] font-bold text-[#004986] dark:text-white">M3</span> Stockholders' Equity: Part 1</p>
+                                        <div class="ltr:ml-auto rtl:mr-auto flex justify-between items-center gap-5">
+                                            <p>9 Videos - 40 MCQs - 4 TBSs</p>
+                                            <div [ngClass]="{ 'rotate-180': accordians1 === 3 }">
+                                                <icon-caret-down />
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <div [@slideDownUp]="accordians1 !== 3" class="accordion-content">
+                                    <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-dark dark:text-white dark:border-[#1b2e4b]">
+                                        <div class="flex flex-wrap justify-between items-center">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold">MCQs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 1h 20m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column cursor-pointer text-[20px]" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="'/mcq'"></i>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold mt-3">TBSs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 1h 20m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column cursor-pointer text-[20px]" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="'/tbs'"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                <div class="flex justify-center items-center ps-3 dark:bg-[#1b2e4b]">
+                                    <div class="w-[25px] h-[25px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="flex flex-wrap w-full items-center sm:items-center p-4 px-2 text-white-dark"
+                                        [ngClass]="{ '!text-[#FBE6A7]': accordians1 === 4 }"
+                                        (click)="accordians1 === 4 ? (accordians1 = null) : (accordians1 = 4)">
+                                        <p><span class="text-[25px] font-bold text-[#004986] dark:text-white">M4</span> Stockholders' Equity: Part 2</p>
+                                        <div class="ltr:ml-auto rtl:mr-auto flex justify-between items-center gap-5">
+                                            <p>9 Videos - 40 MCQs - 4 TBSs</p>
+                                            <div [ngClass]="{ 'rotate-180': accordians1 === 4 }">
+                                                <icon-caret-down  />
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div [@slideDownUp]="accordians1 !== 4" class="accordion-content">
+                                    <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-dark dark:text-white dark:border-[#1b2e4b]">
+                                        <div class="flex flex-wrap justify-between items-center">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold">MCQs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 1h 20m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column cursor-pointer text-[20px]" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="'/mcq'"></i>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="text-[22px] font-bold mt-3">TBSs</h3>
+                                                <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 1h 20m</h6>
+                                            </div>
+                                            <div class="flex justify-between items-center gap-7">
+                                                <i class="fa-solid fa-chart-column cursor-pointer text-[20px]" (click)="openModal()"></i>
+                                                <i class="fa-solid fa-chevron-right cursor-pointer text-[20px]" [routerLink]="'/tbs'"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" *ngIf="modalVisible">
+    <div class="bg-white text-center dark:bg-gray-800  lg:w-[80%] md:w-full p-6 rounded-lg shadow-lg relative animate__animated animate__fadeInDown">
+        <button class="absolute top-2 right-2" (click)="closeModal()"> <i class="fa-solid fa-xmark text-xl font-bold text-gray-500 hover:text-gray-700"></i> </button>
+
+        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100"> MCQs Statistics </h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-300 text-sm text-gray-800 dark:text-gray-200">
+              <thead class="bg-gray-100 dark:bg-gray-700 text-center">
+                <tr>
+                  <th class="px-4 py-2 border">Session</th>
+                  <th class="px-4 py-2 border">Date</th>
+                  <th class="px-4 py-2 border">Time Spent</th>
+                  <th class="px-4 py-2 border"># Questions</th>
+                  <th class="px-4 py-2 border"># Correct</th>
+                  <th class="px-4 py-2 border">% Correct</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 text-center">
+                  <td class="px-4 py-2 border">#1</td>
+                  <td class="px-4 py-2 border">04/26/2025 4:00 PM</td>
+                  <td class="px-4 py-2 border">9m 46s</td>
+                  <td class="px-4 py-2 border">25</td>
+                  <td class="px-4 py-2 border">15</td>
+                  <td class="px-4 py-2 border">80%</td>
+                </tr>
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 text-center">
+                  <td class="px-4 py-2 border">#2</td>
+                  <td class="px-4 py-2 border">04/26/2025 4:00 PM</td>
+                  <td class="px-4 py-2 border">9m 46s</td>
+                  <td class="px-4 py-2 border">25</td>
+                  <td class="px-4 py-2 border">15</td>
+                  <td class="px-4 py-2 border">80%</td>
+                </tr>
+                <!-- باقي الصفوف نفس النمط -->
+              </tbody>
+            </table>
+        </div>
+
+        <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 mt-3" (click)="closeModal()"> Close </button>
+    </div>
+</div>

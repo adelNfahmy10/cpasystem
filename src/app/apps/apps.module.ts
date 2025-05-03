@@ -26,6 +26,8 @@ import { Far1Component } from './far/far1/far1.component';
 import { McqComponent } from './mcq/mcq.component';
 import { TbsComponent } from './tbs/tbs.component';
 import { PackagesComponent } from './packages/packages.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { SubcategoriesComponent } from './subcategories/subcategories.component';
 
 const routes: Routes = [
     { path: 'apps/chat', component: ChatComponent, data: { title: 'Chat' } },
@@ -41,7 +43,7 @@ const routes: Routes = [
     { path: 'apps/calendar', component: CalendarComponent, data: { title: 'Calendar' } },
     { path: 'apps/packages', component: PackagesComponent, data: { title: 'Packages' }},
     { path: 'apps/far', component: FarComponent, data: { title: 'FAR' }},
-    { path:'f1', component:Far1Component, data:{title: 'F1'}},
+    { path: 'apps/subCategory', component: SubcategoriesComponent, data: { title: 'SubCategory' } },
     { path: 'apps/aud', component: AudComponent, data: { title: 'AUD' } },
     { path: 'apps/reg', component: RegComponent, data: { title: 'REG' } },
     { path: 'apps/bar', component: BarComponent, data: { title: 'BAR' } },

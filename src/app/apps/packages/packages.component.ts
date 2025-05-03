@@ -1,15 +1,32 @@
 import { NgClass, NgFor, NgStyle } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { PackagesService } from 'src/app/service/packages/packages.service';
 
 @Component({
   selector: 'app-packages',
   standalone: true,
-  imports: [RouterLink, NgFor, NgStyle],
+  imports: [RouterLink, NgFor],
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.css'
 })
-export class PackagesComponent {
+export class PackagesComponent implements OnInit {
+    private readonly _PackagesService = inject(PackagesService)
+
+    allPackages:any[] = []
+
+    ngOnInit(): void {
+        this.getAllPackage()
+    }
+
+    getAllPackage():void{
+        this._PackagesService.getAllPackages().subscribe({
+            next:(res)=>{
+                this.allPackages = res.data
+            }
+        })
+    }
+
     courseData = [
         {
           id: 1,

@@ -3,6 +3,6 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    baseUrl: 'http://cources.runasp.net/api/',
+    baseUrl: 'https://cources.runasp.net/api/',
     production: false,
 };
