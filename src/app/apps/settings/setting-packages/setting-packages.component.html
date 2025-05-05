@@ -1,0 +1,91 @@
+<section class="bg-white p-4">
+    <h1 class="text-[30px] font-extrabold">Add New Packages</h1>
+    <div class="package-form my-5">
+        <form class="space-y-5" [formGroup]="packageForm" (ngSubmit)="submitPackageForm()">
+            <div class="lg:flex gap-3">
+                <div class="w-full">
+                    <input formControlName="Title" type="text" placeholder="Enter Package Title" class="form-input" />
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">The package title is very important for users</span>
+                </div>
+                <div class="w-full">
+                    <input formControlName="SubTitle" type="text" placeholder="Enter Package SubTitle" class="form-input" />
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">The subtitle gives a brief idea of the title</span>
+                </div>
+            </div>
+
+            <div class="lg:flex gap-3">
+                <div class="w-full">
+                    <input formControlName="LessonsNumber" type="number" placeholder="Enter The Number Of Lessons In The Package" class="form-input" />
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">The number of lessons included in this package</span>
+                </div>
+                <div class="w-full">
+                    <input formControlName="DurationByDays" type="number" placeholder="Enter the package duration in days" class="form-input" />
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">The package duration must be specified in days</span>
+                </div>
+            </div>
+
+            <div class="lg:flex gap-3">
+                <div class="w-full">
+                    <input formControlName="Price" type="number" placeholder="Enter Package Price" class="form-input" />
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">The price represents what's included in the package</span>
+                </div>
+                <div class="w-full">
+                    <input formControlName="OfferPrice" type="number" placeholder="Enter Package Offer" class="form-input" />
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">This package offer is available if needed</span>
+                </div>
+            </div>
+
+            <div>
+                <textarea formControlName="Description" placeholder="Enter Package Description" class="form-input"></textarea>
+                <span class="mt-1 inline-block text-[11px] text-white-dark">This description helps users understand what's included in the package</span>
+            </div>
+
+            <div class="w-full">
+                <div class="custom-file-container" data-upload-id="myFirstImage"></div>
+            </div>
+            <button type="submit" class="btn btn-primary text-center mx-auto">Submit</button>
+        </form>
+    </div>
+    <div class="package-data">
+        <div class="mb-5">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>SubTitle</th>
+                            <th>Lessons</th>
+                            <th>Price</th>
+                            <th>Offer</th>
+                            <th>duration</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(package of allPackages(); track $index){
+                            <tr>
+                                <td><img [src]="package.image || 'assets/images/far-image/far-1.png'" class="w-[80px]" alt=""></td>
+                                <td>{{ package.subTitle }}</td>
+                                <td>{{ package.title }}</td>
+                                <td>{{ package.lessonsNumber }}</td>
+                                <td>{{ package.price }}</td>
+                                <td>{{ package.offerPrice }}</td>
+                                <td>{{ package.durationByDays }} Days</td>
+                                <td>
+                                    <div class="flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
+                                        <button (click)="deletePackage(package.id)" type="button" ngxTippy package-tippy-content="Delete">
+                                            <icon-trash-lines class="m-auto" />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

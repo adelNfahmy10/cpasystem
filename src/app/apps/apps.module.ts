@@ -28,6 +28,12 @@ import { TbsComponent } from './tbs/tbs.component';
 import { PackagesComponent } from './packages/packages.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { SettingsComponent } from './settings/settings.component';
+import { CouresComponent } from './settings/coures/coures.component';
+import { CategoryComponent } from './settings/category/category.component';
+import { SubcategoryComponent } from './settings/subcategory/subcategory.component';
+import { QuestionComponent } from './settings/question/question.component';
+import { SettingPackagesComponent } from './settings/setting-packages/setting-packages.component';
 
 const routes: Routes = [
     { path: 'apps/chat', component: ChatComponent, data: { title: 'Chat' } },
@@ -43,14 +49,20 @@ const routes: Routes = [
     { path: 'apps/calendar', component: CalendarComponent, data: { title: 'Calendar' } },
     { path: 'apps/packages', component: PackagesComponent, data: { title: 'Packages' }},
     { path: 'apps/far', component: FarComponent, data: { title: 'FAR' }},
-    { path: 'apps/subCategory', component: SubcategoriesComponent, data: { title: 'SubCategory' } },
     { path: 'apps/aud', component: AudComponent, data: { title: 'AUD' } },
     { path: 'apps/reg', component: RegComponent, data: { title: 'REG' } },
     { path: 'apps/bar', component: BarComponent, data: { title: 'BAR' } },
     { path: 'apps/isc', component: IscComponent, data: { title: 'ISC' } },
     { path: 'apps/tcp', component: TcpComponent, data: { title: 'TCP' } },
+    { path: 'apps/subCategory', component: SubcategoriesComponent, data: { title: 'SubCategory' } },
     { path: 'mcq', component: McqComponent, data: { title: 'MSQs' } },
     { path: 'tbs', component: TbsComponent, data: { title: 'TBSs' } },
+    { path: 'apps/settings', component: SettingsComponent, data: { title: 'Settings' } },
+    { path: 'apps/settings/setting-packages', component: SettingPackagesComponent, data: { title: 'Setting Packages' } },
+    { path: 'apps/settings/coures', component: CouresComponent, data: { title: 'Setting Coures' } },
+    { path: 'apps/settings/category', component: CategoryComponent, data: { title: 'Settings Category' } },
+    { path: 'apps/settings/subcategory', component: SubcategoryComponent, data: { title: 'Settings SubCategory' } },
+    { path: 'apps/settings/Questions', component: QuestionComponent, data: { title: 'Settings Questions' } },
 ];
 
 @NgModule({
