@@ -3,7 +3,6 @@ import { IconModule } from "../../../shared/icon/icon.module";
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CoursesService } from 'src/app/service/courses/courses.service';
-import { PackagesService } from 'src/app/service/packages/packages.service';
 import { CategoriesService } from 'src/app/service/categories/categories.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { CategoriesService } from 'src/app/service/categories/categories.service
   styleUrl: './category.component.css'
 })
 export class CategoryComponent {
- private readonly _FormBuilder = inject(FormBuilder)
+    private readonly _FormBuilder = inject(FormBuilder)
     private readonly _CategoriesService = inject(CategoriesService)
     private readonly _CoursesService = inject(CoursesService)
 
@@ -72,7 +71,7 @@ export class CategoryComponent {
         })
     }
 
-    deletePackage(id:string):void{
+    deleteCategory(id:string):void{
         this._CategoriesService.deleteCategories(id).subscribe({
             next:(res)=>{
                 Swal.fire({

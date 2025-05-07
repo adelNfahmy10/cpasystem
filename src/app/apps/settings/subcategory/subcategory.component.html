@@ -1,1 +1,66 @@
-<p>subcategory works!</p>
+<section class="bg-white p-4">
+    <h1 class="text-[30px] font-extrabold">Add New SubCategories</h1>
+    <div class="subcategory-form my-5">
+        <form class="space-y-5" [formGroup]="subCategoryForm" (ngSubmit)="submitSubCategories()">
+
+
+            <div class="lg:flex gap-3">
+                <div>
+                    <select class="border border-1 p-3 rounded-lg w-full" name="subcategory" id="subcategory" (change)="selectCategory($event)">
+                        <option selected disabled>Choose A Category</option>
+                        @for(category of allCategories(); track $index){
+                            <option [value]="category.id">{{category.subTitle}} {{category.title}}</option>
+                        }
+                    </select>
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">Select Category To SubCategory</span>
+                </div>
+                <div class="w-full">
+                    <input formControlName="title" type="text" placeholder="Enter SubCategory Title" class="form-input" />
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">The SubCategory title is very important for users like 'M1, M2...</span>
+                </div>
+            </div>
+
+            <div>
+                <textarea formControlName="description" placeholder="Enter SubCategory Description" class="form-input"></textarea>
+                <span class="mt-1 inline-block text-[11px] text-white-dark">This description helps users understand what's included in the SubTitle</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary text-center mx-auto">Submit</button>
+        </form>
+    </div>
+    <div class="course-data">
+        <div class="mb-5">
+            <div class="table-responsive">
+                <table c>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(subCategory of allSubCategories(); track $index){
+                            <tr>
+                                <td>{{ subCategory.categoryName}}</td>
+                                <td>{{ subCategory.title }}</td>
+                                <td>{{ subCategory.description }}</td>
+                                <td>
+                                    <div class="flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
+                                        <button (click)="deleteSubCategory(subCategory.id)" type="button" ngxTippy package-tippy-content="Delete">
+                                            <icon-trash-lines class="m-auto" />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+

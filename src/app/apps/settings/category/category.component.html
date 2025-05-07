@@ -1,17 +1,17 @@
 <section class="bg-white p-4">
     <h1 class="text-[30px] font-extrabold">Add New Categories</h1>
-    <div class="package-form my-5">
+    <div class="category-form my-5">
         <form class="space-y-5" [formGroup]="categoryForm" (ngSubmit)="submitCategories()">
 
             <div class="lg:flex gap-3">
                 <div class="w-full">
-                    <select class="border border-1 p-3 rounded-lg w-full" name="package" id="package" (change)="selectCourse($event)">
+                    <select class="border border-1 p-3 rounded-lg w-full" name="category" id="category" (change)="selectCourse($event)">
                         <option selected disabled>Choose A Course</option>
-                        @for(package of allCourses(); track $index){
-                            <option [value]="package.id">{{package.subTitle}}</option>
+                        @for(category of allCourses(); track $index){
+                            <option [value]="category.id">{{category.subTitle}}</option>
                         }
                     </select>
-                    <span class="mt-1 inline-block text-[11px] text-white-dark">Select Course To Course</span>
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">Select Course To Category</span>
                 </div>
                 <div class="w-full">
                     <input formControlName="title" type="text" placeholder="Enter Category Title" class="form-input" />
@@ -57,7 +57,7 @@
                                 <td>
                                     <div class="flex justify-center items-center gap-2">
                                         <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
-                                        <button (click)="deletePackage(category.id)" type="button" ngxTippy package-tippy-content="Delete">
+                                        <button (click)="deleteCategory(category.id)" type="button" ngxTippy package-tippy-content="Delete">
                                             <icon-trash-lines class="m-auto" />
                                         </button>
                                     </div>
