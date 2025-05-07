@@ -6,7 +6,7 @@ import { PackagesService } from 'src/app/service/packages/packages.service';
 @Component({
   selector: 'app-packages',
   standalone: true,
-  imports: [RouterLink, NgFor],
+  imports: [RouterLink, NgFor, NgStyle],
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.css'
 })

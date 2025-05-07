@@ -1,4 +1,4 @@
-﻿import { Component, inject } from '@angular/core';
+﻿import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,7 +18,7 @@ export class SidebarComponent {
     store: any;
     activeDropdown: string[] = [];
     parentDropdown: string = '';
-    allCourses:any[] = []
+    allCourses:WritableSignal<any[]> = signal([])
     allCategoriesByCourseId: any[] = []
 
     constructor(
@@ -37,11 +37,10 @@ export class SidebarComponent {
     getAllCourses():void{
         this._CoursesService.getAllCourses().subscribe({
             next:(res)=>{
-                this.allCourses = res.data
+                this.allCourses.set(res.data)
             }
         })
     }
-
 
     getAllCategoriesByCourseId(id:string):void{
         this._CoursesService.courseId.set(id)

@@ -1,38 +1,38 @@
 <section>
     <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5">
-        <div class="shadow-xl relative flex flex-col justify-between items-center" *ngFor="let course of allPackages">
-            <!-- <div class="course-image">
+        <div class="shadow-xl relative flex flex-col justify-between items-center" *ngFor="let package of allPackages">
+            <div class="course-image">
                 <a [routerLink]="['']">
-                    <img src="{{course.courseImage}}" alt="">
+                    <img src="{{package.image}}" alt="">
                 </a>
-                <div [ngStyle]="{ 'background-color': course.color }" class="absolute top-[10px] left-[20px] p-1 rounded-lg text-white">
-                    <a class="bg-sky-600">{{course.subTitle}}</a>
+                <div [ngStyle]="{ 'background-color': package.color }" class="absolute top-[10px] left-[20px] rounded-lg text-white">
+                    <a class="bg-sky-600 px-2 py-1 rounded-md">{{package.subTitle}}</a>
                 </div>
-            </div> -->
+            </div>
             <div class="course_content p-5 w-full">
                 <div class="course_meta flex items-center justify-between">
                     <div class="course_lesson text-[#00000069]">
-                        <span>{{course.subTitle}} - </span>
+                        <span>{{package.subTitle}} - </span>
                         <span>
                             <i class="fa-solid fa-book"></i>
-                            {{course.lessonsNumber}} Lesson
+                            {{package.lessonsNumber}} Lesson
                         </span>
                     </div>
                     <div class="course_rating text-[#00000069]">
                         <span>
                             <i class="fa-solid fa-star text-[#FF9415]"></i>
-                            {{course.rate}}
+                            {{package.rate}}
                         </span>
                     </div>
                 </div>
                 <h3 class="course_title font-bold text-[18px] mt-3">
-                    <a class="hover:text-[#3B60FF] transition-all" [routerLink]="['']">{{course.title}}</a>
+                    <a class="hover:text-[#3B60FF] transition-all" [routerLink]="['']">{{package.title}}</a>
                 </h3>
             </div>
             <div class="course_more flex justify-between items-center border-t w-full">
                 <div class="course_status d-flex align-items-center p-3">
-                    <span class="text-[#3B60FF] text-[22px] font-extrabold ">${{course.price}} </span>
-                    <span class="old-price line-through">${{course.offerPrice}}</span>
+                    <span class="text-[#3B60FF] text-[22px] font-extrabold ">${{package.price}} </span>
+                    <span class="old-price line-through">${{package.offerPrice}}</span>
                 </div>
                 <div class="course_btn pe-5">
                     <a [routerLink]="['']" class="group hover:text-[#3B60FF] transition-all font-semibold">Subscrip Now <i class="fa-solid fa-arrow-right transform transition-transform duration-300 group-hover:rotate-[-30deg] group-hover:translate-x-[2px]"></i></a>

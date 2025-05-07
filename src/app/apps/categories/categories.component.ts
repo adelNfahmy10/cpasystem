@@ -1,28 +1,35 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { slideDownUp } from 'src/app/shared/animations';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CategoriesService } from 'src/app/service/categories/categories.service';
 import { IconModule } from 'src/app/shared/icon/icon.module';
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [IconModule , RouterLink],
+  imports: [IconModule, RouterLink],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css'
 })
-export class CategoriesComponent {
-    codeArr: any = [];
-    toggleCode = (name: string) => {
-        if (this.codeArr.includes(name)) {
-            this.codeArr = this.codeArr.filter((d: string) => d != name);
-        } else {
-            this.codeArr.push(name);
-        }
-    };
+export class CategoriesComponent implements OnInit{
+    private readonly _CategoriesService = inject(CategoriesService)
+    private readonly _ActivatedRoute = inject(ActivatedRoute)
 
-    constructor() {}
+    allCategories:WritableSignal<any[]> = signal([])
+    courseId:WritableSignal<string> = signal('')
 
-    accordians1:any = 1;
-    accordians2:any = 1;
-    accordians3:any = 1;
-    accordians4:any = 1;
+    ngOnInit(): void {
+        this.getAllCategoriesByCourseId()
+    }
+
+    getAllCategoriesByCourseId():void{
+        this._ActivatedRoute.paramMap.subscribe({
+            next:(param)=>{
+                this.courseId.set(param.get('id')!)
+                this._CategoriesService.getCategoriesByCouresId(this.courseId()).subscribe({
+                    next:(res)=>{
+                        this.allCategories.set(res.data)
+                    }
+                })
+            }
+        })
+    }
 }
