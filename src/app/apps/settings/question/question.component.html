@@ -1,1 +1,113 @@
-<p>question works!</p>
+<section class="bg-white p-4">
+    <h1 class="text-[30px] font-extrabold">Add New SubCategories</h1>
+    <div class="questions-form my-5">
+        <form class="space-y-5" [formGroup]="questionForm" (ngSubmit)="submitQuestionForm()">
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <select class="border border-1 p-2 rounded-lg w-full" name="subcategory" id="subcategory" (change)="selectSubCategory($event)">
+                        <option selected disabled>Choose A SubCategory</option>
+                        @for(subCategory of allSubCategories(); track $index){
+                            <option [value]="subCategory.id">{{subCategory.title}} - {{subCategory.description}}</option>
+                        }
+                    </select>
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">Select SubCategory To Question</span>
+                </div>
+                <div>
+                    <select class="border border-1 p-2 rounded-lg w-full" name="typeId" id="typeId" (change)="selectQuestionType($event)">
+                        <option selected disabled>Choose A Question Type</option>
+                        <option value="1">MSQs</option>
+                        <option value="2">TBSs</option>
+                    </select>
+                    <span class="mt-1 inline-block text-[11px] text-white-dark">Select Question Type To Question</span>
+                </div>
+            </div>
+            <div>
+                <textarea formControlName="questionText" placeholder="Enter Question" class="form-input"></textarea>
+                <span class="mt-1 inline-block text-[11px] text-white-dark">Enter Your Question Here</span>
+            </div>
+            <div>
+                <textarea formControlName="description" placeholder="Enter Question Description" class="form-input"></textarea>
+                <span class="mt-1 inline-block text-[11px] text-white-dark">This description helps users understand what's included in the Question</span>
+            </div>
+            <div>
+                <textarea formControlName="explanation" placeholder="Enter Enter Explanation's Question" class="form-input"></textarea>
+                <span class="mt-1 inline-block text-[11px] text-white-dark">This explanation helps users understand The Answer Question</span>
+            </div>
+
+            <div formArrayName="mcqOptions">
+                <ng-container *ngFor="let customer of msqOptionArray().controls; let i = index">
+                    <div [formGroupName]="i">
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="flex flex-wrap items-start gap-2 w-full">
+                                <div class="w-8/12">
+                                    <textarea formControlName="optionText" placeholder="Enter Question's Answer Options" class="form-input"></textarea>
+                                    <span class="mt-1 inline-block text-[11px] text-white-dark">Set Estimated Time (Minutes) for Question Type</span>
+                                </div>
+
+                                <div>
+                                    <input formControlName="isCorrect" type="checkbox" class="form-checkbox" />
+                                    <span class="mt-1 inline-block text-[11px] text-white-dark">Click Here If Option is Correct</span>
+                                </div>
+                                @if(i == 0){
+                                    <button type="button" class="btn btn-outline-success rounded-full" (click)="addMsqOption()"><i class="fa-solid fa-plus"></i></button>
+                                }
+                                @if(i > 0){
+                                    <button type="button" class="btn btn-sm btn-danger" (click)="removeMsqOption(i)"><i class="fa-solid fa-trash"></i></button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <button type="submit" class="btn btn-primary text-center mx-auto">Submit</button>
+        </form>
+    </div>
+    <div class="course-data">
+        <div class="mb-5">
+            <div class="table-responsive">
+                <table c>
+                    <thead>
+                        <tr>
+                            <th>SubCategroy</th>
+                            <th>Question Type</th>
+                            <th>Question</th>
+                            <th>options</th>
+                            <th>Explanation</th>
+                            <th>Description</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(question of allQuestions(); track $index){
+                            <tr>
+                                <td>{{ question.SubCategroy || 'Unknown'}}</td>
+                                <td>{{ question.questionType || 'Unknown' }}</td>
+                                <td>{{ question.questionText }}</td>
+                                <td>
+                                    <ul>
+                                        @for(option of question.options; track $index){
+                                            <li>{{option}}</li>
+                                        }
+                                    </ul>
+                                </td>
+                                <td>{{ question.explanation }}</td>
+                                <td>{{ question.description }}</td>
+                                <td>
+                                    <div class="flex justify-center items-center gap-2">
+                                        <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
+                                        <button (click)="deleteQuestion(question.id)" type="button" ngxTippy package-tippy-content="Delete">
+                                            <icon-trash-lines class="m-auto" />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+

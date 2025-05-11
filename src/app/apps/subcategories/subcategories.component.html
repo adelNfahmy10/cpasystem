@@ -33,11 +33,11 @@
                     </div>
                     <div [@slideDownUp]="accordians !== $index" class="accordion-content">
                         <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-dark dark:text-white dark:border-[#1b2e4b]">
-                            @for(question of allQuestionTypes() ; track $index){
+                            @for(question of subCategory.subCategory.questionTypes; track $index){
                                 <div class="flex justify-between items-center">
                                     <div>
-                                        <h3 class="text-[22px] font-bold">{{question.name}}</h3>
-                                        <h6 class="text-[12px] mt-2 text-white-dark">Estimated time 1h 20m</h6>
+                                        <h3 class="text-[22px] font-bold">{{question.typeName}}</h3>
+                                        <h6 class="text-[12px] mt-2 text-white-dark">Estimated time: {{question.estimateTime}}m</h6>
                                     </div>
                                     <div class="flex justify-between items-center gap-7">
                                         <i class="fa-solid fa-chart-column text-[20px] cursor-pointer" (click)="openModal()"></i>

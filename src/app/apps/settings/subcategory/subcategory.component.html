@@ -2,27 +2,51 @@
     <h1 class="text-[30px] font-extrabold">Add New SubCategories</h1>
     <div class="subcategory-form my-5">
         <form class="space-y-5" [formGroup]="subCategoryForm" (ngSubmit)="submitSubCategories()">
-
-
-            <div class="lg:flex gap-3">
-                <div>
-                    <select class="border border-1 p-3 rounded-lg w-full" name="subcategory" id="subcategory" (change)="selectCategory($event)">
-                        <option selected disabled>Choose A Category</option>
-                        @for(category of allCategories(); track $index){
-                            <option [value]="category.id">{{category.subTitle}} {{category.title}}</option>
-                        }
-                    </select>
-                    <span class="mt-1 inline-block text-[11px] text-white-dark">Select Category To SubCategory</span>
-                </div>
-                <div class="w-full">
-                    <input formControlName="title" type="text" placeholder="Enter SubCategory Title" class="form-input" />
-                    <span class="mt-1 inline-block text-[11px] text-white-dark">The SubCategory title is very important for users like 'M1, M2...</span>
-                </div>
+            <div>
+                <select class="border border-1 p-2 rounded-lg w-full" name="subcategory" id="subcategory" (change)="selectCategory($event)">
+                    <option selected disabled>Choose A Category</option>
+                    @for(category of allCategories(); track $index){
+                        <option [value]="category.id">{{category.subTitle}} {{category.title}}</option>
+                    }
+                </select>
+                <span class="mt-1 inline-block text-[11px] text-white-dark">Select Category To SubCategory</span>
             </div>
-
+            <div>
+                <input formControlName="title" type="text" placeholder="Enter SubCategory Title" class="form-input" />
+                <span class="mt-1 inline-block text-[11px] text-white-dark">The SubCategory title is very important for users like 'M1, M2...</span>
+            </div>
             <div>
                 <textarea formControlName="description" placeholder="Enter SubCategory Description" class="form-input"></textarea>
                 <span class="mt-1 inline-block text-[11px] text-white-dark">This description helps users understand what's included in the SubTitle</span>
+            </div>
+            <div formArrayName="subCategoryQuestionTypes">
+                <ng-container *ngFor="let customer of questionTypeArray().controls; let i = index">
+                    <div [formGroupName]="i">
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-2">
+                                <select formControlName="questionTypeId" class="border border-1 p-2 rounded-lg w-full" name="questionType" id="questionType">
+                                    <option selected disabled>Choose A Question Type</option>
+                                    <option value="1">MSQ Question</option>
+                                    <option value="2">TBS Question</option>
+                                </select>
+                                <span class="mt-1 inline-block text-[11px] text-white-dark">Select Category To SubCategory</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <div>
+                                    <input formControlName="estimateTime" type="number" placeholder="Enter Estimate Time (min)" class="form-input" />
+                                    <span class="mt-1 inline-block text-[11px] text-white-dark">Set Estimated Time (Minutes) for Question Type</span>
+                                </div>
+                                @if(i == 0){
+                                    <button type="button" class="btn btn-outline-success rounded-full" (click)="addQuestionType()"><i class="fa-solid fa-plus"></i></button>
+                                }
+                                @if(i > 0){
+                                    <button type="button" class="btn btn-sm btn-danger" (click)="removeQuestionType(i)"><i class="fa-solid fa-trash"></i></button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
 
             <button type="submit" class="btn btn-primary text-center mx-auto">Submit</button>
@@ -37,6 +61,7 @@
                             <th>Category</th>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>Estimated Time</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -46,6 +71,13 @@
                                 <td>{{ subCategory.categoryName}}</td>
                                 <td>{{ subCategory.title }}</td>
                                 <td>{{ subCategory.description }}</td>
+                                <td>
+                                    <ul>
+                                        @for(questionType of subCategory.subCategoryQuestionTypes; track $index){
+                                            <li>{{questionType.name}} - {{questionType.estimateTime}} Min</li>
+                                        }
+                                    </ul>
+                                </td>
                                 <td>
                                     <div class="flex justify-center items-center gap-2">
                                         <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>

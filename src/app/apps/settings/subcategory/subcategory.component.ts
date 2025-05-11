@@ -1,20 +1,21 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { IconModule } from "../../../shared/icon/icon.module";
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CoursesService } from 'src/app/service/courses/courses.service';
 import { CategoriesService } from 'src/app/service/categories/categories.service';
 import { SubcategoriesService } from 'src/app/service/subcategories/subcategories.service';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-subcategory',
   standalone: true,
-  imports: [IconModule, ReactiveFormsModule],
+  imports: [IconModule, ReactiveFormsModule, NgFor],
   templateUrl: './subcategory.component.html',
   styleUrl: './subcategory.component.css'
 })
 export class SubcategoryComponent {
- private readonly _FormBuilder = inject(FormBuilder)
+    private readonly _FormBuilder = inject(FormBuilder)
     private readonly _CategoriesService = inject(CategoriesService)
     private readonly _SubcategoriesService = inject(SubcategoriesService)
 
@@ -25,6 +26,7 @@ export class SubcategoryComponent {
     ngOnInit() {
         this.getAllSubCategories()
         this.getAllCategories()
+        this.addQuestionType()
     }
 
     getAllCategories():void{
@@ -53,7 +55,25 @@ export class SubcategoryComponent {
         categoryId:[''],
         title:[''],
         description:[''],
+        subCategoryQuestionTypes:this._FormBuilder.array([]),
     })
+
+    questionTypeArray():FormArray{
+        return this.subCategoryForm.get('subCategoryQuestionTypes') as FormArray
+    }
+
+    addQuestionType(){
+        let questionType = this._FormBuilder.group({
+            questionTypeId:['Choose A Question Type'],
+            estimateTime:[''],
+        })
+
+        this.questionTypeArray().push(questionType)
+    }
+
+    removeQuestionType(index:number){
+        return this.questionTypeArray().removeAt(index)
+    }
 
     submitSubCategories():void{
         let data = this.subCategoryForm.value
@@ -73,14 +93,14 @@ export class SubcategoryComponent {
     }
 
     deleteSubCategory(id:string):void{
-        this._CategoriesService.deleteCategories(id).subscribe({
+        this._SubcategoriesService.deleteSubCategories(id).subscribe({
             next:(res)=>{
                 Swal.fire({
                     icon: 'success',
                     title: 'Category deleted successfully',
                     customClass: { popup: 'sweet-alerts' },
                 });
-                this.getAllCategories()
+                this.getAllSubCategories()
             }
         })
     }

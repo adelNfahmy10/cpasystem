@@ -6,13 +6,13 @@
                     <img src="{{package.image}}" alt="">
                 </a>
                 <div [ngStyle]="{ 'background-color': package.color }" class="absolute top-[10px] left-[20px] rounded-lg text-white">
-                    <a class="bg-sky-600 px-2 py-1 rounded-md">{{package.subTitle}}</a>
+                    <a class="bg-sky-600 px-2 py-1 rounded-md">{{package.title}}</a>
                 </div>
             </div>
             <div class="course_content p-5 w-full">
                 <div class="course_meta flex items-center justify-between">
                     <div class="course_lesson text-[#00000069]">
-                        <span>{{package.subTitle}} - </span>
+                        <span>{{package.title}} - </span>
                         <span>
                             <i class="fa-solid fa-book"></i>
                             {{package.lessonsNumber}} Lesson
@@ -26,13 +26,13 @@
                     </div>
                 </div>
                 <h3 class="course_title font-bold text-[18px] mt-3">
-                    <a class="hover:text-[#3B60FF] transition-all" [routerLink]="['']">{{package.title}}</a>
+                    <a class="hover:text-[#3B60FF] transition-all" [routerLink]="['']">{{package.subTitle}}</a>
                 </h3>
             </div>
             <div class="course_more flex justify-between items-center border-t w-full">
                 <div class="course_status d-flex align-items-center p-3">
-                    <span class="text-[#3B60FF] text-[22px] font-extrabold ">${{package.price}} </span>
-                    <span class="old-price line-through">${{package.offerPrice}}</span>
+                    <span class="text-[#3B60FF] text-[22px] font-extrabold ">${{package.offerPrice}} </span>
+                    <span class="old-price line-through">${{package.price}}</span>
                 </div>
                 <div class="course_btn pe-5">
                     <a [routerLink]="['']" class="group hover:text-[#3B60FF] transition-all font-semibold">Subscrip Now <i class="fa-solid fa-arrow-right transform transition-transform duration-300 group-hover:rotate-[-30deg] group-hover:translate-x-[2px]"></i></a>

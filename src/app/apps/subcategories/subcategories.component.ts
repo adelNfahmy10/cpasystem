@@ -26,6 +26,7 @@ export class SubcategoriesComponent implements OnInit{
     private readonly _ActivatedRoute = inject(ActivatedRoute)
 
     allSubCategories:WritableSignal<any[]> = signal([])
+    countQuestions:WritableSignal<any> = signal({})
     allQuestionTypes:WritableSignal<any[]> = signal([])
 
     ngOnInit(): void {
@@ -39,7 +40,6 @@ export class SubcategoriesComponent implements OnInit{
                 this._SubcategoriesService.getSubCategoriesByCategoryId(categoryId).subscribe({
                     next:(res)=>{
                         this.allSubCategories.set(res.data.subCategories)
-                        this.allQuestionTypes.set(res.data.questionTypes)
                     }
                 })
             }
