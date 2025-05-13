@@ -34,6 +34,7 @@ import { CategoryComponent } from './settings/category/category.component';
 import { SubcategoryComponent } from './settings/subcategory/subcategory.component';
 import { QuestionComponent } from './settings/question/question.component';
 import { SettingPackagesComponent } from './settings/setting-packages/setting-packages.component';
+import { QuestionDetailsComponent } from './settings/question/question-details/question-details.component';
 
 const routes: Routes = [
     { path: 'apps/chat', component: ChatComponent, data: { title: 'Chat' } },
@@ -56,14 +57,15 @@ const routes: Routes = [
     { path: 'apps/tcp', component: TcpComponent, data: { title: 'TCP' } },
     { path: 'apps/categories/:title/:id', component: CategoriesComponent, data: { title: 'SubCategory' } },
     { path: 'apps/subcategory/:id', component: SubcategoriesComponent, data: { title: 'SubCategory' } },
-    { path: 'mcq', component: McqComponent, data: { title: 'MSQs' } },
-    { path: 'tbs', component: TbsComponent, data: { title: 'TBSs' } },
+    { path: 'mcq/:subCategoryId/:typeId', component: McqComponent, data: { title: 'MSQs' } },
+    { path: 'tbs/:subCategoryId/:typeId', component: TbsComponent, data: { title: 'TBSs' } },
     { path: 'apps/settings', component: SettingsComponent, data: { title: 'Settings' } },
     { path: 'apps/settings/setting-packages', component: SettingPackagesComponent, data: { title: 'Setting Packages' } },
     { path: 'apps/settings/coures', component: CouresComponent, data: { title: 'Setting Coures' } },
     { path: 'apps/settings/category', component: CategoryComponent, data: { title: 'Settings Category' } },
     { path: 'apps/settings/subcategory', component: SubcategoryComponent, data: { title: 'Settings SubCategory' } },
     { path: 'apps/settings/Questions', component: QuestionComponent, data: { title: 'Settings Questions' } },
+    { path: 'apps/settings/question-details/:id', component: QuestionDetailsComponent, data: { title: 'Questions Details' } },
 ];
 
 @NgModule({

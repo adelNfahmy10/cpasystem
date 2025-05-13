@@ -17,12 +17,16 @@ export class QuestionsService {
         return this._HttpClient.get(`${environment.baseUrl}Question/GetQuestionById/${id}`)
     }
 
-    getQuestionTypeId(subcategoryId :any, questionTypeId :any):Observable<any>{
+    getQuestionByTypeId(subcategoryId :any, questionTypeId :any):Observable<any>{
         return this._HttpClient.get(`${environment.baseUrl}Question/GetQuestionBySubcategoryId/${subcategoryId}/QuestionTypeId/${questionTypeId}`)
     }
 
     createQuestion(data:any):Observable<any>{
         return this._HttpClient.post(`${environment.baseUrl}Question/CreateQuestion`, data)
+    }
+
+    answerQuestions(subCategoryId:any ,data:any):Observable<any>{
+        return this._HttpClient.post(`${environment.baseUrl}UserQuestionAnswers/EvaluateAnswersAsync/${subCategoryId}`, data)
     }
 
     deleteQuestion(id:any):Observable<any>{

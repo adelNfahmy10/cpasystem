@@ -41,6 +41,7 @@ export class BoxedSigninComponent {
                 localStorage.setItem('token', res.data.accessToken)
                 localStorage.setItem('refreshToken', res.data.refreshToken)
                 localStorage.setItem('fullName', res.data.fullName)
+                localStorage.setItem('userId', res.data.userId)
                 localStorage.setItem('role', res.data.roles)
                 this.router.navigate(['/apps/packages'])
             }

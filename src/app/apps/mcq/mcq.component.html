@@ -1,6 +1,6 @@
 <section>
     <div class="head bg-[#173F6C] dark:bg-[#0E1726] text-white dark:text-[#8185A1] p-3">
-        MCQs | F1 - M1 Balance Sheet, Income Statement, And Comprehensive Income
+        {{headTitle().questionType}} | {{headTitle().categoryTitle}} - {{headTitle().subCategoryTitle}} {{headTitle().subCategorySubTitle}}
     </div>
 
     <div class="tools bg-white dark:bg-[#101430] dark:text-[#b4b7c6] p-3">
@@ -8,7 +8,6 @@
             <div class="flex justify-start items-center gap-1">
                 <i *ngIf="timerRunning" class="fa-solid fa-pause text-[20px] cursor-pointer me-4" (click)="toggleTimer()"></i>
                 <i *ngIf="!timerRunning" class="fa-solid fa-play text-[20px] cursor-pointer me-4" (click)="toggleTimer()"></i>
-
                 <span class="text-[30px] font-semibold me-2">{{minutes}}:{{seconds}}</span>
                 <div class="mt-4 flex justify-center items-center gap-1">
                     <p class="text-[14px] font-semibold">QUESTION <br> TIME ELAPSED</p>
@@ -32,11 +31,121 @@
             </div>
 
             <div class="text-end">
-                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">END SESSION</button>
+                <button (click)="submitExam()" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">END SESSION</button>
             </div>
         </div>
     </div>
 
+    <div class="question-index py-3">
+        <div class="flex flex-wrap justify-center items-center gap-3 mb-3">
+            <span *ngFor="let q of questions; let i = index"
+                (click)="selectQuestionByIndex(i)"
+                [ngClass]="{
+                    'hover:text-[#A22D5C]': i !== selectedIndex,
+                    'text-[#A22D5C]': i === selectedIndex,
+                    'text-[28px]': i === selectedIndex,
+                    'bg-green-200 rounded': hasAnswered(q.id)
+                }"
+                class="text-[20px] font-semibold cursor-pointer px-3 py-1">
+                {{ i + 1 }}
+            </span>
+        </div>
+
+
+
+        <div class="bg-white dark:bg-transparent p-10 py-3 mt-3 border border-l-2 border-white-light !border-l-primary">
+            <div class="flex flex-wrap gap-8">
+                <div class="flex gap-3">
+                   <i class="fa-solid fa-play rotate-y-180 cursor-pointer"
+                    [ngClass]="{
+                        'pointer-events-none' : selectedIndex === 0,
+                        'text-[#aaa]' : selectedIndex === 0
+                    }"
+                    (click)="selectQuestionByIndex(selectedIndex - 1)">
+                    </i>
+
+                    <div class="flex items-start justify-center">
+                        <h1 class="font-bold text-[30px] text-[#A22D5C]">
+                            {{ selectedIndex + 1 }}
+                        </h1>
+                        <i class="fa-solid fa-bookmark text-[#aaa]"></i>
+                    </div>
+
+                    <i class="fa-solid fa-play cursor-pointer"
+                    [ngClass]="{
+                        'pointer-events-none' : selectedIndex === questions.length - 1,
+                        'text-[#aaa]' : selectedIndex === questions.length - 1
+                    }"
+                    (click)="selectQuestionByIndex(selectedIndex + 1)">
+                    </i>
+                </div>
+            </div>
+
+
+            <h5 class="text-lg font-semibold dark:text-white-light my-5">
+                {{ selectedQuestion?.questionText }}
+            </h5>
+            <div *ngFor="let option of selectedQuestion?.options">
+                <label class="inline-flex items-center gap-2">
+                    <input
+                    type="radio"
+                    name="question_{{ selectedQuestion.id }}"
+                    [value]="option"
+                    (change)="selectOption(option)"
+                    [checked]="selectedAnswers[selectedQuestion.id] === option"
+                    class="form-radio"
+                    [disabled]="hasAnswered(selectedQuestion.id)" />
+                    <span
+                    class="px-3 py-1 rounded"
+                    [ngClass]="{
+                        'bg-green-500 text-white': isCorrectOption(selectedQuestion.id, option),
+                        'bg-red-500 text-white': isWrongOption(selectedQuestion.id, option)
+                    }">
+                    {{ option.optionText }}
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="selectedQuestion?.id && hasAnswered(selectedQuestion.id)" class="mt-6 p-4 border rounded bg-gray-100 dark:bg-gray-800">
+        <h6 class="font-semibold text-primary mb-2">Explanation:</h6>
+        <p class="mb-3">{{ selectedQuestion.explanation }}</p>
+    </div>
+
+    <!-- Modal -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" *ngIf="modalVisible">
+        <div class="bg-white text-center dark:bg-gray-800  lg:w-[80%] md:w-full p-6 rounded-lg shadow-lg relative animate__animated animate__fadeInDown">
+            <button class="absolute top-2 right-2" (click)="closeModal()"> <i class="fa-solid fa-xmark text-xl font-bold text-gray-500 hover:text-gray-700"></i> </button>
+
+            <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100"> {{headTitle().questionType}} Statistics </h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full border border-gray-300 text-sm text-gray-800 dark:text-gray-200">
+                    <thead class="bg-gray-100 dark:bg-gray-700 text-center">
+                        <tr>
+                            <th class="px-4 py-2 border">Correct Answers</th>
+                            <th class="px-4 py-2 border">Answered Questions</th>
+                            <th class="px-4 py-2 border">Total Mcq Questions</th>
+                            <th class="px-4 py-2 border">Answered Percentage</th>
+                            <th class="px-4 py-2 border">Total Session Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 text-center">
+                            <td class="px-4 py-2 border">{{answerReport.correctAnswersCount}} Questions(s)</td>
+                            <td class="px-4 py-2 border">{{answerReport.answeredQuestionsCount}} Questions(s)</td>
+                            <td class="px-4 py-2 border">{{answerReport.totalMcqQuestionsInSubCategory}} Questions(s)</td>
+                            <td class="px-4 py-2 border">{{answerReport.answeredPercentage}}%</td>
+                            <td class="px-4 py-2 border">{{answerReport.totalSessionTimeInSeconds}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 mt-3" (click)="closeModal()" [routerLink]="['/apps/subcategory/' + this.categoryId()]"> Close </button>
+        </div>
+    </div>
+<!--
     <div class="question-index py-3">
         <div class="flex flex-wrap justify-center items-center gap-3 mb-3">
           <span
@@ -106,5 +215,6 @@
                 </ul>
               </div>
         </div>
-      </div>
+    </div>
+-->
 </section>

@@ -2,16 +2,15 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { IconModule } from "../../../shared/icon/icon.module";
 import Swal from 'sweetalert2';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CoursesService } from 'src/app/service/courses/courses.service';
-import { CategoriesService } from 'src/app/service/categories/categories.service';
 import { SubcategoriesService } from 'src/app/service/subcategories/subcategories.service';
 import { NgFor } from '@angular/common';
 import { QuestionsService } from 'src/app/service/questions/questions.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-question',
   standalone: true,
-  imports: [IconModule, ReactiveFormsModule, NgFor],
+  imports: [IconModule, ReactiveFormsModule, NgFor, RouterLink],
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'
 })
