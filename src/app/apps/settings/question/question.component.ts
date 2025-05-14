@@ -21,6 +21,7 @@ export class QuestionComponent {
 
     allSubCategories:WritableSignal<any[]> = signal([])
     allQuestions:WritableSignal<any[]> = signal([])
+    headTitle:WritableSignal<any> = signal({})
     subCategoryId:WritableSignal<any> = signal(null)
     questionTypeId:WritableSignal<any> = signal(null)
 
@@ -28,6 +29,8 @@ export class QuestionComponent {
         this.getAllSubCategories()
         this.getAllQuestions()
         this.addMsqOption()
+        this.addTableRow()
+        this.addCellToRow(0)
     }
 
     selectQuestionType(event:Event):void{
@@ -44,7 +47,6 @@ export class QuestionComponent {
         this._SubcategoriesService.getAllSubCategories().subscribe({
             next:(res)=>{
                 this.allSubCategories.set(res.data)
-                console.log(res);
             }
         })
     }
@@ -52,7 +54,7 @@ export class QuestionComponent {
     getAllQuestions():void{
         this._QuestionsService.getAllQuesitons().subscribe({
             next:(res)=>{
-                this.allQuestions.set(res.data)
+               this.allQuestions.set(res.data)
             }
         })
     }
@@ -84,6 +86,37 @@ export class QuestionComponent {
 
     removeMsqOption(index:number){
         return this.msqOptionArray().removeAt(index)
+    }
+
+    get tableRowArray():FormArray{
+        return this.questionForm.get('tableRows') as FormArray
+    }
+
+    getCells(rowIndex: number): FormArray {
+        return this.tableRowArray.at(rowIndex).get('cells') as FormArray;
+    }
+
+    addTableRow(){
+        const row = this._FormBuilder.group({
+            cells: this._FormBuilder.array([])
+        });
+
+        this.tableRowArray.push(row);
+    }
+
+    removeTableRow(rowIndex: number): void {
+        this.tableRowArray.removeAt(rowIndex);
+    }
+
+    removeCellFromRow(rowIndex: number, cellIndex: number): void {
+        this.getCells(rowIndex).removeAt(cellIndex);
+    }
+    addCellToRow(rowIndex: number): void {
+        const cell = this._FormBuilder.group({
+            value: ['']
+        });
+
+        this.getCells(rowIndex).push(cell);
     }
 
     submitQuestionForm():void{

@@ -18,28 +18,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{ questionDetails().subCategory || 'Unknown'}}</td>
-                    <td>{{ questionDetails().questionType || 'Unknown' }}</td>
-                    <td>{{ questionDetails().questionText }}</td>
-                    <td>
-                        <ul>
-                            @for(option of questionDetails().options; track $index){
-                                <li>{{option.optionText}} - {{option.isCorrect}}</li>
-                            }
-                        </ul>
-                    </td>
-                    <td>{{ questionDetails().explanation }}</td>
-                    <td>{{ questionDetails().description }}</td>
-                    <td>
-                        <div class="flex justify-center items-center gap-2">
-                            <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
-                            <button (click)="deleteQuestion(questionDetails().id)" type="button" ngxTippy package-tippy-content="Delete">
-                                <icon-trash-lines class="m-auto" />
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                @for(question of questionDetails().questions; track $index){
+                    <tr>
+                        <td>{{ questionDetails().details.subCategoryTitle || 'Unknown'}}</td>
+                        <td>{{ questionDetails().details.questionType || 'Unknown' }}</td>
+                        <td>{{ question.questionText }}</td>
+                        <td>
+                            <ul>
+                                @for(option of question.options; track $index){
+                                    <li>{{option.optionText}} - {{option.isCorrect}}</li>
+                                }
+                            </ul>
+                        </td>
+                        <td>{{ question.explanation }}</td>
+                        <td>{{ question.description }}</td>
+                        <td>
+                            <div class="flex justify-center items-center gap-2">
+                                <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
+                                <button (click)="deleteQuestion(questionDetails().id)" type="button" ngxTippy package-tippy-content="Delete">
+                                    <icon-trash-lines class="m-auto" />
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

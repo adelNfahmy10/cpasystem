@@ -21,17 +21,34 @@
                     <span class="mt-1 inline-block text-[11px] text-white-dark">Select Question Type To Question</span>
                 </div>
             </div>
+
             <div>
                 <textarea formControlName="questionText" placeholder="Enter Question" class="form-input"></textarea>
                 <span class="mt-1 inline-block text-[11px] text-white-dark">Enter Your Question Here</span>
             </div>
+
             <div>
                 <textarea formControlName="description" placeholder="Enter Question Description" class="form-input"></textarea>
                 <span class="mt-1 inline-block text-[11px] text-white-dark">This description helps users understand what's included in the Question</span>
             </div>
+
             <div>
                 <textarea formControlName="explanation" placeholder="Enter Enter Explanation's Question" class="form-input"></textarea>
                 <span class="mt-1 inline-block text-[11px] text-white-dark">This explanation helps users understand The Answer Question</span>
+            </div>
+
+            <div formArrayName="tableRows">
+                <div *ngFor="let row of tableRowArray.controls; let i = index" [formGroupName]="i" class="row-block">
+                    <button type="button" (click)="addTableRow()">➕ Add Row</button>
+                    <button class="m-3" type="button" (click)="removeTableRow(i)">🗑 Remove Row</button>
+                    <div formArrayName="cells"  class="flex flex-col items-start gap-2 mt-3">
+                        <button type="button" (click)="addCellToRow(i)">➕ Add Cell</button>
+                        <div *ngFor="let cell of getCells(i).controls; let j = index" [formGroupName]="j" class="cell-block w-full flex items-center gap-3">
+                            <input class="mb-2 form-input" formControlName="value" placeholder="Cell Value" />
+                            <button class="text-[30px]" type="button" (click)="removeCellFromRow(i, j)">🗑</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div formArrayName="mcqOptions">
@@ -67,43 +84,33 @@
     <div class="question-data">
         <div class="mb-5">
             <div class="table-responsive">
-                <table c>
+                <table>
                     <thead>
                         <tr>
                             <th>SubCategroy</th>
                             <th>Question Type</th>
                             <th>Question</th>
-                            <!-- <th>options</th> -->
-                            <!-- <th>Explanation</th> -->
-                            <!-- <th>Description</th> -->
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @for(question of allQuestions(); track $index){
-                            <tr>
-                                <td>{{ question.subCategory || 'Unknown'}}</td>
-                                <td>{{ question.questionType || 'Unknown' }}</td>
-                                <td>{{ question.questionText }}</td>
-                                <!-- <td>
-                                    <ul>
-                                        @for(option of question.options; track $index){
-                                            <li>{{option.optionText}} - {{option.isCorrect}}</li>
-                                        }
-                                    </ul>
-                                </td> -->
-                                <!-- <td>{{ question.explanation }}</td> -->
-                                <!-- <td>{{ question.description }}</td> -->
-                                <td>
-                                    <div class="flex justify-center items-center gap-2">
-                                        <i class="fa-solid fa-circle-info cursor-pointer" [routerLink]="['/apps/settings/question-details/' + question.id]" routerLinkActive="router-link-active" ></i>
-                                        <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
-                                        <button (click)="deleteQuestion(question.id)" type="button" ngxTippy package-tippy-content="Delete">
-                                            <icon-trash-lines class="m-auto" />
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                        @for(data of allQuestions(); track $index){
+                            @for(question of data.questions; track $index){
+                                <tr>
+                                    <td>{{ data.details.subCategoryTitle || 'Unknown'}}</td>
+                                    <td>{{ data.details.questionType || 'Unknown' }}</td>
+                                    <td>{{ question.questionText }}</td>
+                                    <td>
+                                        <div class="flex justify-center items-center gap-2">
+                                            <i class="fa-solid fa-circle-info cursor-pointer" [routerLink]="['/apps/settings/question-details/' + question.id]" routerLinkActive="router-link-active" ></i>
+                                            <i class="fa-solid fa-pen-to-square text-[16px] cursor-pointer"></i>
+                                            <button (click)="deleteQuestion(question.id)" type="button" ngxTippy package-tippy-content="Delete">
+                                                <icon-trash-lines class="m-auto" />
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
