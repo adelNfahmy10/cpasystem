@@ -48,7 +48,8 @@ export class McqComponent implements OnInit{
                         this.questions = res.data[0].questions
                         this.headTitle.set(res.data[0].details)
                         this.categoryId.set(this.headTitle().categoryId)
-                        console.log(this.categoryId());
+                        console.log(this.questions);
+
                     }
                 })
             }

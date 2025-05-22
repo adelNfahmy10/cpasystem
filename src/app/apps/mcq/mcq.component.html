@@ -85,6 +85,19 @@
             <h5 class="text-lg font-semibold dark:text-white-light my-5">
                 {{ selectedQuestion?.questionText }}
             </h5>
+            @if(selectedQuestion?.hasTable){
+                <table class="table-auto w-[50%] mx-auto">
+                    <tbody>
+                        @for(table of selectedQuestion?.tableRows; track $index){
+                            <tr class="border-2 border-gray-400 px-2 py-1 even:bg-gray-100">
+                                @for(col of table.cells; track $index){
+                                    <td><span class="text-[#000]">{{col.value}}</span></td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
             <div *ngFor="let option of selectedQuestion?.options">
                 <label class="inline-flex items-center gap-2">
                     <input

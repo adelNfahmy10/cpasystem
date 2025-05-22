@@ -1,131 +1,138 @@
-<div>
-    <div class="grid grid-cols-1 mt-[30px]">
-        <div class="panel relative">
-            <img src="assets/images/far-image/far-logo.png" class="w-[100px] absolute top-[-40px] start-0 drop-shadow-[0_5px_2px_#FBE6A7]" alt="far">
-            <div class="mb-5 mt-[35px]">
-                <div class="space-y-3 text-center sm:space-y-0 ltr:sm:text-left rtl:sm:text-right">
-                    @for(category of allCategories(); track $index){
-                        <div [routerLink]="['/apps/subcategory/' + category.id]" routerLinkActive="router-link-active"  class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                            <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20 after:z-[1]">
+ <div class="grid grid-cols-1">
+    <div class="panel relative pt-[10px]">
+        <div class="flex items-center relative left-[-20px]">
+            <img src="assets/images/far-image/far-logo.png" class="w-[100px] drop-shadow-[0_5px_2px_#FBE6A7]" alt="far">
+            <h1 class="text-[40px] font-bold italic">Study Journey</h1>
+        </div>
+        <div class="mb-5">
+            <div class="space-y-3 text-center sm:space-y-0 ltr:sm:text-left rtl:sm:text-right">
+                @for(category of allCategories(); track $index){
+                    <div [routerLink]="['/apps/subcategory/' + category.id]" routerLinkActive="router-link-active"  class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20 after:z-[1]">
+                             @if(category.title.includes('Exam')){
+                                <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
+                                    <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
+                                </div>
+                            } @else {
                                 <div class="w-[30px] h-[30px] flex justify-center items-center text-[#AD7226] bg-[#FBE6A7] rounded-tl-[10px] rounded-br-[10px]">
                                     <i class="fa-solid fa-minus font-bold text-[16px]"></i>
                                 </div>
-                            </div>
-                            <div class="flex justify-between w-100">
-                                <p class="p-2.5 text-[13px] font-semibold text-[#8185a3]"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">{{category.title}}</span> {{category.subTitle}}</p>
-                            </div>
-                            <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                            }
                         </div>
-                    }
 
-                    <!-- <div class="items-center flex relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-full">
-                            <p class="p-2.5 text-[13px] font-semibold text-[#686d8c] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F2</span> Financial Reporting And Disclosures</p>
+                        <div class="flex justify-between w-100">
+                            <p class="p-2.5 text-[13px] font-semibold text-[#8185a3]"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">{{category.title}}</span> {{category.subTitle}}</p>
                         </div>
                         <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
                     </div>
-                    <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
-                                <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
-                            </div>
+                }
+
+                <!-- <div class="items-center flex relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
                         </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Mini Exam 1</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
                     </div>
-                    <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20 after:z-[1]">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center text-[#AD7226] bg-[#FBE6A7] rounded-tl-[10px] rounded-br-[10px]">
-                                <i class="fa-solid fa-minus font-bold text-[16px]"></i>
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[13px] font-semibold text-[#8185a3]"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F3</span> Assets And Related Topics</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                    <div class="flex justify-between w-full">
+                        <p class="p-2.5 text-[13px] font-semibold text-[#686d8c] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F2</span> Financial Reporting And Disclosures</p>
                     </div>
-                    <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[13px] font-semibold text-[#8185a3] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F4</span> Liabilities</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
-                    </div>
-                    <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
-                                <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Mini Exam 2</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
-                    </div>
-                    <div class="items-center flex relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[13px] font-semibold text-[#8185a3] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F5</span> Investments, Statement of Cash Flows, and Income Taxes</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
-                    </div>
-                    <div class="items-center flex relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[13px] font-semibold text-[#8185a3] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F6</span> NFP Accounting and Governmental Accounting</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
-                    </div>
-                    <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Mini Exam 3</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
-                    </div>
-                    <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
-                                <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Simulated Exam 1</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
-                    </div>
-                    <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
-                        <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
-                            <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
-                                <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
-                            </div>
-                        </div>
-                        <div class="flex justify-between w-100">
-                            <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Simulated Exam 2</p>
-                        </div>
-                        <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
-                    </div> -->
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
                 </div>
+                <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
+                            <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Mini Exam 1</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20 after:z-[1]">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center text-[#AD7226] bg-[#FBE6A7] rounded-tl-[10px] rounded-br-[10px]">
+                            <i class="fa-solid fa-minus font-bold text-[16px]"></i>
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[13px] font-semibold text-[#8185a3]"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F3</span> Assets And Related Topics</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[13px] font-semibold text-[#8185a3] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F4</span> Liabilities</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
+                            <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Mini Exam 2</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[13px] font-semibold text-[#8185a3] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F5</span> Investments, Statement of Cash Flows, and Income Taxes</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[13px] font-semibold text-[#8185a3] text-start"><span class="text-[20px] font-bold text-[#004986] dark:text-[#a1c5e3]">F6</span> NFP Accounting and Governmental Accounting</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#D9E4E6] rounded-tl-[10px] rounded-br-[10px]">
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Mini Exam 3</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
+                            <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Simulated Exam 1</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div>
+                <div class="items-center flex flex-wrap relative hover:bg-[#eee] dark:hover:bg-[#292e4f] transition-all duration-500 cursor-pointer rounded-md">
+                    <div class="relative p-2.5 after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-white-dark/20">
+                        <div class="w-[30px] h-[30px] flex justify-center items-center bg-[#ACF0CB] rounded-tl-[10px] rounded-br-[10px]">
+                            <i class="fa-solid fa-check text-[#008D73] text-[18px]"></i>
+                        </div>
+                    </div>
+                    <div class="flex justify-between w-100">
+                        <p class="p-2.5 text-[25px] font-bold text-[#004986] dark:text-[#a1c5e3]">Simulated Exam 2</p>
+                    </div>
+                    <icon-arrow-backward class="h-6 w-6 absolute end-[10px]" />
+                </div> -->
             </div>
         </div>
     </div>
 </div>
-

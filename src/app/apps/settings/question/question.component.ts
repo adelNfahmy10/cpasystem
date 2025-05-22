@@ -1,7 +1,7 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { IconModule } from "../../../shared/icon/icon.module";
 import Swal from 'sweetalert2';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubcategoriesService } from 'src/app/service/subcategories/subcategories.service';
 import { NgFor } from '@angular/common';
 import { QuestionsService } from 'src/app/service/questions/questions.service';
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-question',
   standalone: true,
-  imports: [IconModule, ReactiveFormsModule, NgFor, RouterLink],
+  imports: [IconModule, ReactiveFormsModule, NgFor, RouterLink, FormsModule],
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'
 })
@@ -24,7 +24,11 @@ export class QuestionComponent {
     headTitle:WritableSignal<any> = signal({})
     subCategoryId:WritableSignal<any> = signal(null)
     questionTypeId:WritableSignal<any> = signal(null)
-
+    hasTable:WritableSignal<boolean> = signal(false)
+    checkTable(){
+        this.hasTable.set(!this.hasTable())
+        console.log(this.hasTable());
+    }
     ngOnInit() {
         this.getAllSubCategories()
         this.getAllQuestions()
@@ -66,7 +70,7 @@ export class QuestionComponent {
         description:[''],
         difficulty:[''],
         explanation:[''],
-        hasTable:[true],
+        hasTable:[false],
         mcqOptions:this._FormBuilder.array([]),
         tableRows:this._FormBuilder.array([]),
     })
@@ -123,6 +127,7 @@ export class QuestionComponent {
         let data = this.questionForm.value
         data.subCategoryId = this.subCategoryId()
         data.typeId = this.questionTypeId()
+        data.hasTable = this.hasTable()
 
         this._QuestionsService.createQuestion(data).subscribe({
             next:(res)=>{

@@ -28,28 +28,39 @@
             </div>
 
             <div>
+                <textarea formControlName="explanation" placeholder="Enter Explanation's Question" class="form-input"></textarea>
+                <span class="mt-1 inline-block text-[11px] text-white-dark">This explanation helps users understand The Answer Question</span>
+            </div>
+
+            <div>
                 <textarea formControlName="description" placeholder="Enter Question Description" class="form-input"></textarea>
                 <span class="mt-1 inline-block text-[11px] text-white-dark">This description helps users understand what's included in the Question</span>
             </div>
 
-            <div>
-                <textarea formControlName="explanation" placeholder="Enter Enter Explanation's Question" class="form-input"></textarea>
-                <span class="mt-1 inline-block text-[11px] text-white-dark">This explanation helps users understand The Answer Question</span>
+            <div class="flex items-center gap-1">
+                <input
+                    type="checkbox"
+                    class="form-check"
+                    (click)="checkTable()"
+                />
+                <span>Has Table</span>
             </div>
 
-            <div formArrayName="tableRows">
-                <div *ngFor="let row of tableRowArray.controls; let i = index" [formGroupName]="i" class="row-block">
-                    <button type="button" (click)="addTableRow()">➕ Add Row</button>
-                    <button class="m-3" type="button" (click)="removeTableRow(i)">🗑 Remove Row</button>
-                    <div formArrayName="cells"  class="flex flex-col items-start gap-2 mt-3">
-                        <button type="button" (click)="addCellToRow(i)">➕ Add Cell</button>
-                        <div *ngFor="let cell of getCells(i).controls; let j = index" [formGroupName]="j" class="cell-block w-full flex items-center gap-3">
-                            <input class="mb-2 form-input" formControlName="value" placeholder="Cell Value" />
-                            <button class="text-[30px]" type="button" (click)="removeCellFromRow(i, j)">🗑</button>
+            @if(hasTable()){
+                <div formArrayName="tableRows">
+                    <div *ngFor="let row of tableRowArray.controls; let i = index" [formGroupName]="i" class="row-block">
+                        <button type="button" (click)="addTableRow()">➕ Add Row</button>
+                        <button class="m-3" type="button" (click)="removeTableRow(i)">🗑 Remove Row</button>
+                        <div formArrayName="cells"  class="flex flex-col items-start gap-2 mt-3">
+                            <button type="button" (click)="addCellToRow(i)">➕ Add Cell</button>
+                            <div *ngFor="let cell of getCells(i).controls; let j = index" [formGroupName]="j" class="cell-block w-full flex items-center gap-3">
+                                <input class="mb-2 form-input" formControlName="value" placeholder="Cell Value" />
+                                <button class="text-[30px]" type="button" (click)="removeCellFromRow(i, j)">🗑</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
 
             <div formArrayName="mcqOptions">
                 <ng-container *ngFor="let customer of msqOptionArray().controls; let i = index">
